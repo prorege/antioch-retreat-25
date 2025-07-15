@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[서로 사랑하라]</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Open Graph 메타 태그 -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="서로 사랑하라 : 안디옥 전교인 수련회">
+  <meta property="og:description" content="2025-07/31~08/02 | 구미안디옥교회">
+  <meta property="og:image" content="img/meta.png"> 
+  <!--메타이미지 변경필요 -->
+  <meta property="og:url" content="https://love-one-another.netlify.app/">
+</head>
+
+<body>
+ <header id="header">
+  <div class="header-overlay">
+    <h2>서로 사랑하라</h2>
+    <p>안디옥교회 전교인 수련회</p>
+  </div>
+</header>
+
+  
+  <div class="grid-container">
+    <input type="text" id="nameInput" placeholder="이름을 입력하세요 (e.g., 이찬희)" class="grid-item">
+    
+    <button id="grd8" class="grid-item" onclick="findTeam()">나의 조 찾기 🔍</button>
+    <button id="grd2" class="grid-item" onclick="findRoom()">나의 숙소 찾기 🏠</button>
+    <button id="grd3" class="grid-item" onclick="showAllTeams()">전체 조 보기 👥</button>
+    <button id="grd4" class="grid-item" onclick="showAllRooms()">전체 숙소표 보기 👨‍👩‍👧‍👦</button>
+    <button id="grd5" class="grid-item" onclick="showEmergency()">응급 연락망 📞</button>
+    <button id="grd6" class="grid-item" onclick="showSchedule()">일정 📅</button>
+    <button id="grd7" class="grid-item" onclick="showFood()">식단표 🍲</button>
+    <button id="grd8" class="grid-item" onclick="showResolution()">결단문 ✍️</button>
+  </div>
+  
+  <!-- output 영역 -->
+  <div class="grid-item results team-info" id="teamInfo"></div>
+  <div class="grid-item results room-info" id="roomInfo" style="display: none;"></div>
+  <div class="grid-item results team-list" id="allTeams"></div>
+  <div class="grid-item results all-rooms" id="allRooms" style="display: none;"></div>
+  <div class="grid-item results emergency-info" id="emergencyInfo"></div>
+  <div class="grid-item results schedule-info" id="scheduleInfo"></div>
+  <div class="grid-item results food-info" id="foodInfo" style="display: none;"></div>
+  <div class="grid-item results resolution-info" id="resolutionInfo"></div>
+  
+  <!-- footer -->
+  <footer>
+    <p>
+      &copy; 2025 서로 사랑하라<br>
+      Designed with 🌿 by <br>
+      <a href="https://www.youtube.com/@hewilldoit">Antioch Church</a>
+    </p>
+  </footer>
+  
+  <!-- script파일 -->
+  <script src="script.js"></script>
+</body>
+</html>

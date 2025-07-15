@@ -45,7 +45,7 @@ header {
 }
 
 #header {
-    background: url('img/ocean_header.png') center/cover no-repeat;
+    background: url('img/main.png') center/cover no-repeat;
     height: 500px;
     position: relative;
 }

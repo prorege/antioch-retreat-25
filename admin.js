@@ -15,6 +15,8 @@ const searchSection = document.getElementById("searchSection");
 const modeSelect = document.getElementById("modeSelect");
 const nameInput = document.getElementById("name");
 const roleInput = document.getElementById("role");
+const memberInput = document.getElementById("member");
+
 const churchInput = document.getElementById("church");
 const teamInput = document.getElementById("team");
 const roomInput = document.getElementById("room");
@@ -49,10 +51,11 @@ window.submitParticipant = async function () {
     role: roleInput.value,
     church: churchInput.value,
     team: teamInput.value,
-    room: roomInput.value
+    room: roomInput.value,
+    member: memberInput.value
   };
 
-  if (!participant.name || !participant.role || !participant.church || !participant.team || !participant.room) {
+  if (!participant.name || !participant.role || !participant.church || !participant.team || !participant.room || !participant.member) {
     alert("모든 필드를 입력해주세요.");
     return;
   }
@@ -98,6 +101,7 @@ window.searchParticipant = async function () {
       card.className = "card";
       card.innerHTML = `
         <strong>이름:</strong> ${p.name}<br/>
+        <strong>역할:</strong> ${p.member}<br/>
         <strong>직분:</strong> ${p.role}<br/>
         <strong>지교회:</strong> ${p.church}<br/>
         <strong>조:</strong> ${p.team}<br/>
@@ -124,6 +128,7 @@ window.editParticipant = async function (docId) {
     churchInput.value = p.church;
     teamInput.value = p.team;
     roomInput.value = p.room;
+    memberInput.value = p.member || "";
   });
 
   editingDocId = docId;
@@ -152,4 +157,6 @@ function clearForm() {
   churchInput.value = "";
   teamInput.value = "";
   roomInput.value = "";
+  memberInput.value = "";
+
 }

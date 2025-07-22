@@ -232,3 +232,20 @@ footer {
   font-size: 0.9rem;
   margin-top: 40px;
 }
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.result-table th,
+.result-table td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.result-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}

@@ -4,72 +4,24 @@
   <meta charset="UTF-8" />
   <title>참가자 관리</title>
   <script type="module" src="./script.js"></script>
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f7f3e9;
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-
-    input, select, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      background-color: #a8c686;
-      color: white;
-      font-weight: bold;
-      margin-top: 15px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #8aad5d;
-    }
-
-    .card {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 15px;
-      margin-top: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .card button {
-      width: auto;
-      margin-right: 10px;
-    }
-
-    .section {
-      margin-top: 20px;
-    }
-
-    h2 {
-      margin-bottom: 10px;
-    }
-  </style>
+<link rel="stylesheet" href="admin.css">
 </head>
 <body>
-  <!-- 초기 선택 화면 -->
-  <div id="modeSelect" class="section">
+  <!-- 로그인 섹션 -->
+  <div id="loginSection">
+    <h2>관리자 로그인</h2>
+    <input type="email" id="email" placeholder="이메일">
+    <input type="password" id="password" placeholder="비밀번호">
+    <button onclick="login()">로그인</button>
+    <p id="loginError" style="color:red;"></p>
+  </div>
+
+  <!-- 기존 내용 -->
+  <div id="modeSelect" class="section" style="display:none;">
     <h2>모드를 선택하세요</h2>
     <button class="toggleToForm">➕ 추가하기</button>
     <button class="toggleToSearch">🛠 수정하기</button>
+    <button onclick="logout()">🔓 로그아웃</button>
   </div>
 
   <!-- 추가 폼 -->
@@ -78,6 +30,13 @@
 
     <label for="name">이름</label>
     <input type="text" id="name" required />
+
+    <label for="member">팀장/팀원</label>
+    <select id="member" required>
+      <option value="">선택</option>
+      <option>팀장</option>
+      <option>팀원</option>
+    </select>
 
     <label for="role">직분</label>
     <select id="role" required>
@@ -154,6 +113,9 @@
 
     <div id="searchResult"></div>
   </div>
+
+  <a href="index.html" id="goToUserPage" title="사용자 페이지로 이동">🏠 사용자 페이지</a>
   <script type="module" src="admin.js"></script>
+  <script type="module" src="auth.js"></script>
 </body>
 </html>

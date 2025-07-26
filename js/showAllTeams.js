@@ -8,7 +8,14 @@ export async function showAllTeams() {
   const teamMap = new Map();
 
   snap.forEach(doc => {
-    const { team, name, member } = doc.data(); // member = "팀장" 또는 "팀원"
+    let { team, name, member } = doc.data();
+
+    team = team?.toString().trim();
+    name = name?.trim();
+    member = member?.trim();
+
+    if (!team || !name || !member) return; // 누락 방지
+
     if (!teamMap.has(team)) teamMap.set(team, []);
     teamMap.get(team).push({ name, member });
   });
@@ -16,18 +23,26 @@ export async function showAllTeams() {
   const el = document.getElementById("allTeams");
   el.style.display = "block";
 
-  const sorted = [...teamMap.entries()].sort((a, b) => Number(a[0]) - Number(b[0]));
+const sorted = [...teamMap.entries()].sort(([aTeam], [bTeam]) => {
+  const getNum = str => {
+    const match = str.match(/\d+/);
+    return match ? parseInt(match[0]) : Infinity;
+  };
+  return getNum(aTeam) - getNum(bTeam);
+});
+
   const rows = sorted.map(([team, people]) => {
     const leader = people.find(p => p.member === "팀장");
     const members = people
       .filter(p => p.member !== "팀장")
       .map(p => p.name)
+      .sort((a, b) => a.localeCompare(b))
       .join(", ");
 
     return `
       <tr>
         <td><strong>${team}조</strong></td>
-        <td>${leader ? leader.name : "없음"}</td>
+        <td>${leader ? leader.name : "<span style='color:red;'>없음</span>"}</td>
         <td>${members}</td>
       </tr>
     `;

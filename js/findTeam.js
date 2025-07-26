@@ -66,29 +66,36 @@ async function renderTeamInfo(selectedName, el) {
   const teamNumber = userData.team;
 
   const snap2 = await getDocs(query(collection(db, "participants"), where("team", "==", teamNumber)));
+  const allMembers = snap2.docs.map(doc => doc.data());
 
-  const teammates = snap2.docs
-    .map(doc => doc.data())
-    .sort((a, b) => a.member === "팀장" ? -1 : 1); // 팀장 먼저
+  // 팀장과 팀원 분리
+  const leader = allMembers.find(p => p.member === "팀장");
+  const members = allMembers
+    .filter(p => p.member !== "팀장")
+    .sort((a, b) => a.name.localeCompare(b.name)); // 이름순 정렬
 
   el.innerHTML = `
     <h2 class="card-title">✅ 조 정보</h2>
-      <strong>${userData.name}</strong> 님은 
-      <strong class="emp">${teamNumber}조</strong>입니다.
-    <h4>👥 ${teamNumber}조 구성원 (${teammates.length}명)</h4>
-    <hr>
+    <p><strong>${userData.name}</strong> 님은 <strong class="emp">${teamNumber}조</strong>입니다.</p>
+
+    <h4>👤 ${teamNumber}조 팀장</h4>
     <ul>
-        ${teammates.map(p => `
-        <li>
-          ${p.name} 
-          <span style="color:gray;">(${p.member})</span>
-        </li>
+      ${leader ? `<li>${leader.name} <span style="color:gray;">(${leader.member})</span></li>` : `<li>등록된 팀장이 없습니다.</li>`}
+    </ul>
+
+    <hr>
+
+    <h4>👥 팀원 (${members.length}명)</h4>
+    <ul>
+      ${members.map(p => `
+        <li>${p.name} <span style="color:gray;">(${p.member})</span></li>
       `).join("")}
     </ul>
   `;
 
   el.scrollIntoView({ behavior: "smooth" });
 }
+
 
 // 글로벌에서 선택된 이름으로 조 정보 출력
 window.__showTeam = (selectedName) => {

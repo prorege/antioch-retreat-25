@@ -10,8 +10,11 @@ export async function findTeam() {
   const el = document.getElementById("teamInfo");
   el.style.display = "block";
 
-  if (!name) return alert("이름을 입력해주세요.");
-
+  if (!name) {
+    el.innerHTML = `<p>⚠️ 이름을 입력해주세요.</p>`;
+    el.scrollIntoView({ behavior: "smooth" });
+    return;
+  }
   try {
     // 1. 이름 포함된 사람 검색 (동명이인 포함)
     const q = query(
@@ -28,6 +31,8 @@ export async function findTeam() {
 
     // 2. 여러 명일 경우 선택 유도
     if (snap.size > 1) {
+      el.scrollIntoView({ behavior: "smooth" });
+  
       el.innerHTML = `
         <h3>🔎 '${name}' 검색 결과 (${snap.size}명)</h3>
         <p>정확한 이름을 선택하세요:</p>
@@ -68,11 +73,16 @@ async function renderTeamInfo(selectedName, el) {
 
   el.innerHTML = `
     <h3>✅ 조 정보</h3>
-    <p><strong>${userData.name}</strong> 님은 <strong>${teamNumber}조</strong>입니다.</p>
+      <strong>${userData.name}</strong> 님은 
+      <strong>${teamNumber}조</strong>이며<br>
+      <strong>금식기도 조:</strong> ${userData.fasting || '없음'} 입니다.
     <h4>👥 ${teamNumber}조 구성원 (${teammates.length}명)</h4>
     <ul>
-      ${teammates.map(p => `
-        <li>${p.name} <span style="color:gray;">(${p.member})</span></li>
+        ${teammates.map(p => `
+        <li>
+          ${p.name} 
+          <span style="color:gray;">(${p.member}, 금식: ${p.fasting || '없음'})</span>
+        </li>
       `).join("")}
     </ul>
   `;

@@ -3,6 +3,7 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
   query,
   where,
   updateDoc,
@@ -16,6 +17,7 @@ const modeSelect = document.getElementById("modeSelect");
 const nameInput = document.getElementById("name");
 const roleInput = document.getElementById("role");
 const memberInput = document.getElementById("member");
+const fastingInput = document.getElementById("fasting");
 
 const churchInput = document.getElementById("church");
 const teamInput = document.getElementById("team");
@@ -52,10 +54,11 @@ window.submitParticipant = async function () {
     church: churchInput.value,
     team: teamInput.value,
     room: roomInput.value,
-    member: memberInput.value
+    member: memberInput.value,
+    fasting: fastingInput.value
   };
 
-  if (!participant.name || !participant.role || !participant.church || !participant.team || !participant.room || !participant.member) {
+  if (!participant.name || !participant.role || !participant.church || !participant.team || !participant.room || !participant.member || !participant.fasting) {
     alert("모든 필드를 입력해주세요.");
     return;
   }
@@ -106,6 +109,8 @@ window.searchParticipant = async function () {
         <strong>지교회:</strong> ${p.church}<br/>
         <strong>조:</strong> ${p.team}<br/>
         <strong>숙소:</strong> ${p.room}<br/>
+        <strong>금식기도 조:</strong> ${p.fasting}<br/>
+
         <button onclick="editParticipant('${id}')">수정</button>
         <button onclick="deleteParticipant('${id}')">삭제</button>
       `;
@@ -119,24 +124,33 @@ window.searchParticipant = async function () {
 
 // 수정
 window.editParticipant = async function (docId) {
-  const ref = doc(db, "participants", docId);
-  const snap = await getDocs(query(collection(db, "participants"), where("__name__", "==", docId)));
-  snap.forEach(docSnap => {
-    const p = docSnap.data();
+  try {
+    const ref = doc(db, "participants", docId);
+    const snap = await getDoc(ref); // 🔁 getDocs → getDoc (단일 문서 접근)
+
+    if (!snap.exists()) {
+      alert("해당 참가자를 찾을 수 없습니다.");
+      return;
+    }
+
+    const p = snap.data();
     nameInput.value = p.name;
     roleInput.value = p.role;
     churchInput.value = p.church;
     teamInput.value = p.team;
     roomInput.value = p.room;
     memberInput.value = p.member || "";
-  });
+    fastingInput.value = p.fasting || "";
 
-  editingDocId = docId;
-  formSection.style.display = "block";
-  searchSection.style.display = "none";
-  modeSelect.style.display = "none";
+    editingDocId = docId;
+    formSection.style.display = "block";
+    searchSection.style.display = "none";
+    modeSelect.style.display = "none";
+  } catch (error) {
+    console.error("참가자 불러오기 오류:", error);
+    alert("데이터를 불러오는 중 오류가 발생했습니다.");
+  }
 };
-
 // 삭제
 window.deleteParticipant = async function (docId) {
   if (!confirm("정말 삭제하시겠습니까?")) return;
@@ -158,5 +172,5 @@ function clearForm() {
   teamInput.value = "";
   roomInput.value = "";
   memberInput.value = "";
-
+  fastingInput.value = "";
 }

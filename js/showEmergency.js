@@ -6,11 +6,19 @@ export function showEmergency() {
   el.innerHTML = `
     <h3>📞 응급 연락망</h3>
     <ul>
-      <li>총괄: 박00 목사 010-xxxx-xxxx</li>
-      <li>의료: 김00 권사 010-xxxx-xxxx</li>
-      <li>안전: 이00 집사 010-xxxx-xxxx</li>
+      <li>기획팀장 - 이정길 장로 - <a href="tel:01085713096" class="call-link">전화걸기</a></li>
+      <li>기획총무 - 노동훈 집사 - <a href="tel:01098334516" class="call-link">전화걸기</a></li>
+    </ul>
+    <h3>📞 운전자</h3>
+    <ul>
+      <li>운전자 1 - 이건우 집사 - <a href="tel:01090934230" class="call-link">전화걸기</a></li>
+      <li>운전자 2 - 이찬희 형제 - <a href="tel:01099793096" class="call-link">전화걸기</a></li>
     </ul>
   `;
   el.style.display = "block";
   el.scrollIntoView({ behavior: "smooth" });
 }
+
+
+
+

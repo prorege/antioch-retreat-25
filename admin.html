@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="admin.css">
 </head>
 <body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+
   <!-- 로그인 섹션 -->
   <div id="loginSection">
     <h2>관리자 로그인</h2>
@@ -100,6 +102,17 @@
     <option>신성전 컨텐츠 제작실</option>
     </select>
 
+    <label for="fasting">금식기도 조</label>
+    <select id="fasting" required>
+      <option value="">선택</option>
+      <option>1일차 점심</option>
+      <option>2일차 아침</option>
+      <option>2일차 점심</option>
+      <option>2일차 저녁</option>
+      <option>3일차 아침</option>
+      <option>3일차 점심</option>
+      <option>없음</option>
+    </select>
     <button onclick="submitParticipant()">저장</button>
     <button class="toggleToSearch">🔍 수정하러 가기</button>
   </div>
@@ -113,9 +126,14 @@
 
     <div id="searchResult"></div>
   </div>
+  <h3>CSV 참가자 등록</h3>
+  <input type="file" id="csvInput" accept=".csv">
+  <button onclick="importCSV()">CSV 파일 업로드 📥</button>
+  <div id="importResult" style="margin-top: 10px;"></div>
 
   <a href="index.html" id="goToUserPage" title="사용자 페이지로 이동">🏠 사용자 페이지</a>
   <script type="module" src="admin.js"></script>
   <script type="module" src="auth.js"></script>
+  <script type="module" src="csvImport.js"></script>
 </body>
 </html>

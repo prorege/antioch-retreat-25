@@ -3,15 +3,17 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
- const firebaseConfig = {
-    apiKey: "AIzaSyAHS2Z53ajXvU7qh3f-Kd7MzeMfyNKh7Vk",
-    authDomain: "love-one-another-1e4fd.firebaseapp.com",
-    projectId: "love-one-another-1e4fd",
-    storageBucket: "love-one-another-1e4fd.firebasestorage.app",
-    messagingSenderId: "606500047698",
-    appId: "1:606500047698:web:bca24c636989aec82dc88b",
-    measurementId: "G-NNR6YE7590"
-  };
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyD7DphgkFBtQa3_baSTzNmp75Lzskn3Vms",
+  authDomain: "love-1-another.firebaseapp.com",
+  projectId: "love-1-another",
+  storageBucket: "love-1-another.firebasestorage.app",
+  messagingSenderId: "141526181306",
+  appId: "1:141526181306:web:7e789c9c022cb8c245a983",
+  measurementId: "G-42DCR5R232"
+};
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);

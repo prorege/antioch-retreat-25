@@ -96,6 +96,10 @@ header {
   opacity: 0.9;
 }
 
+#nameInput{
+  width: 96%;
+}
+
 .grid-container {
   max-width: 800px;
   margin: 40px auto;

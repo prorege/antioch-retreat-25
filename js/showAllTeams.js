@@ -14,8 +14,8 @@ export async function showAllTeams() {
     name = name?.trim();
     member = member?.trim();
 
+    if (!team || team === "-" || team.includes("-") || !name || !member) return;
     if (!team || !name || !member) return; // 누락 방지
-
     if (!teamMap.has(team)) teamMap.set(team, []);
     teamMap.get(team).push({ name, member });
   });

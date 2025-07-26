@@ -115,6 +115,11 @@
     </select>
     <button onclick="submitParticipant()">저장</button>
     <button class="toggleToSearch">🔍 수정하러 가기</button>
+        <div id="searchResult"></div>
+      <h3>CSV 참가자 등록</h3>
+    <input type="file" id="csvInput" accept=".csv">
+    <button onclick="importCSV()">CSV 파일 업로드 📥</button>
+    <div id="importResult" style="margin-top: 10px;"></div>  
   </div>
 
   <!-- 검색 및 수정/삭제 영역 -->
@@ -124,12 +129,9 @@
     <button onclick="searchParticipant()">검색</button>
     <button class="toggleToForm">➕ 추가하러 가기</button>
 
-    <div id="searchResult"></div>
+
   </div>
-  <h3>CSV 참가자 등록</h3>
-  <input type="file" id="csvInput" accept=".csv">
-  <button onclick="importCSV()">CSV 파일 업로드 📥</button>
-  <div id="importResult" style="margin-top: 10px;"></div>
+
 
   <a href="index.html" id="goToUserPage" title="사용자 페이지로 이동">🏠 사용자 페이지</a>
   <script type="module" src="admin.js"></script>

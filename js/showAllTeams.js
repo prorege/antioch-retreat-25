@@ -41,7 +41,7 @@ const sorted = [...teamMap.entries()].sort(([aTeam], [bTeam]) => {
 
     return `
       <tr>
-        <td><strong>${team}조</strong></td>
+        <td><strong>${team}</strong></td>
         <td>${leader ? leader.name : "<span style='color:red;'>없음</span>"}</td>
         <td>${members}</td>
       </tr>

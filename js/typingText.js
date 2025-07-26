@@ -1,5 +1,5 @@
 const textElement = document.getElementById('typing-text');
-const text = "서로 사랑하라 \n 2025 안디옥교회 \n 전교인 수련회";
+const text = "서로 사랑하라\n2025 안디옥교회\n전교인 수련회";
 
 let index = 0;
 let isDeleting = false;

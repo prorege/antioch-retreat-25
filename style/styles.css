@@ -43,6 +43,10 @@ body {
   text-align: center;
 }
 
+#typing-text {
+  white-space: pre-line;
+}
+
 header {
   background:
     linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, var(--color-bg-deep) 100%),

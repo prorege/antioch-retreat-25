@@ -34,7 +34,7 @@ export async function showAllTeams() {
   }).join("");
 
   el.innerHTML = `
-    <h3>👥 전체 조 명단</h3>
+    <h2>👥 전체 조 명단</h2>
     <table class="result-table">
       <thead>
         <tr>

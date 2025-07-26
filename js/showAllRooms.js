@@ -25,7 +25,7 @@ export async function showAllRooms() {
   `).join("");
 
   el.innerHTML = `
-    <h3>🏠 전체 숙소 배정표</h3>
+    <h2>🏠 전체 숙소 배정표</h2>
     <table class="result-table">
       <thead><tr><th>숙소 위치</th><th>참가자 명단</th></tr></thead>
       <tbody>${rows}</tbody>

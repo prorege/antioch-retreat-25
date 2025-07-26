@@ -8,6 +8,7 @@ export async function showAllFasting() {
   el.style.display = "block";
 
   try {
+    // Firestore에서 '없음'이 아닌 fasting 필드만 가져오기
     const q = query(collection(db, "participants"), where("fasting", "!=", "없음"));
     const snap = await getDocs(q);
 
@@ -16,39 +17,49 @@ export async function showAllFasting() {
       return;
     }
 
-    // 🧠 fasting 정보별로 그룹화
+    // 숫자 fasting 값을 실제 시간대 이름으로 매핑
+    const fastingLabels = {
+      "1": "1일차 점심",
+      "2": "1일차 저녁",
+      "3": "2일차 아침",
+      "4": "2일차 점심",
+      "5": "2일차 저녁",
+      "6": "3일차 아침",
+    };
+
+    // 정렬 순서를 위한 키 배열
+    const order = ["1", "2", "3", "4", "5", "6"];
+
+    // 각 fasting 숫자에 해당하는 사람들을 저장할 맵
     const fastingMap = {};
 
     snap.docs.forEach(doc => {
-      const { name, team, church, fasting } = doc.data();
-      if (!fastingMap[fasting]) fastingMap[fasting] = [];
-      fastingMap[fasting].push(`${name} (${church} / ${team}조)`);
+      const { name, team, fasting } = doc.data();
+      const key = fasting?.toString().trim();
+      if (!fastingLabels[key]) return; // 유효하지 않은 값은 제외
+
+      if (!fastingMap[key]) fastingMap[key] = [];
+      fastingMap[key].push(`${name} (${team}조)`);
     });
 
-    // 시간순 정렬을 위한 고정된 순서
-    const order = [
-      "1일차 점심", "1일차 저녁",
-      "2일차 아침", "2일차 점심", "2일차 저녁",
-      "3일차 아침", "3일차 점심"
-    ];
-
-    // 💡 HTML 렌더링
-    const rows = order.map(slot => {
-      const names = fastingMap[slot] || [];
+    // HTML 렌더링
+    const rows = order.map(key => {
+      const label = fastingLabels[key];
+      const names = fastingMap[key] || [];
       return `
         <tr>
-          <td><strong>${slot}</strong></td>
+          <td><strong>${label}</strong></td>
           <td>${names.length > 0 ? names.map(n => `<div>${n}</div>`).join("") : "—"}</td>
         </tr>
       `;
     }).join("");
 
     el.innerHTML = `
-      <h3>🙏 전체 금식 기도자 명단</h3>
+      <h2>🙏 전체 금식 기도자 명단</h2>
       <div class="fasting-table-wrapper">
         <table class="fasting-table">
           <thead>
-            <tr><th>식사 시간</th><th>금식자</th></tr>
+            <tr><th>시간</th><th>금식기도자</th></tr>
           </thead>
           <tbody>${rows}</tbody>
         </table>

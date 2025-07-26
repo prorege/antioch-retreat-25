@@ -433,9 +433,10 @@ a.call-link:hover {
   background-color: #003f88;
 }
 
-  h3 {
-    color:#003f88
-  }
+h3 {
+  color:#b9c1ca
+}
+
 
 /* 전체 금식기도 */
 .fasting-table-wrapper {
@@ -525,4 +526,13 @@ a.call-link:hover {
   .bottom-gradient {
     height: 50px;
   }
+}
+.card-title{
+  color: white;
+}
+
+.emp{
+  font-size: 1.8rem;
+  color: var(--color-text-strong);
+
 }

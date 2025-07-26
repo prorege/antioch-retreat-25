@@ -6,7 +6,7 @@ export function showResolution() {
 
   el.innerHTML = `
     <div class="resolution-card">
-      <h3>✍️결단문✍️</h3>
+      <h2>✍️결단문✍️</h2>
       <p class="resolution-text">
         나는 하나님 앞에서 <br> 
         <strong>서로 사랑하라</strong>는 말씀에 순종하며,<br />

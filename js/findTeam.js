@@ -11,7 +11,7 @@ export async function findTeam() {
   el.style.display = "block";
 
   if (!name) {
-    el.innerHTML = `<p>⚠️ 이름을 입력해주세요.</p>`;
+    el.innerHTML = `<p>⚠️ 이름을 입력해주세요 ⬆</p>`;
     el.scrollIntoView({ behavior: "smooth" });
     return;
   }
@@ -35,7 +35,7 @@ export async function findTeam() {
   
       el.innerHTML = `
         <h3>🔎 '${name}' 검색 결과 (${snap.size}명)</h3>
-        <p>정확한 이름을 선택하세요:</p>
+        <p>정확한 이름을 선택하세요</p>
         <ul>
           ${snap.docs.map(doc => {
             const p = doc.data();
@@ -72,16 +72,16 @@ async function renderTeamInfo(selectedName, el) {
     .sort((a, b) => a.member === "팀장" ? -1 : 1); // 팀장 먼저
 
   el.innerHTML = `
-    <h3>✅ 조 정보</h3>
+    <h2 class="card-title">✅ 조 정보</h2>
       <strong>${userData.name}</strong> 님은 
-      <strong>${teamNumber}조</strong>이며<br>
-      <strong>금식기도 조:</strong> ${userData.fasting || '없음'} 입니다.
+      <strong class="emp">${teamNumber}조</strong>입니다.
     <h4>👥 ${teamNumber}조 구성원 (${teammates.length}명)</h4>
+    <hr>
     <ul>
         ${teammates.map(p => `
         <li>
           ${p.name} 
-          <span style="color:gray;">(${p.member}, 금식: ${p.fasting || '없음'})</span>
+          <span style="color:gray;">(${p.member})</span>
         </li>
       `).join("")}
     </ul>

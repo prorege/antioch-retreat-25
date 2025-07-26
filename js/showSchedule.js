@@ -5,11 +5,11 @@ export function showSchedule() {
   const el = document.getElementById("scheduleInfo");
 
   el.innerHTML = `
-    <h3 class="schedule-title">📅 수련회 일정표</h3>
+    <h2 class="schedule-title">📅 일정표 📅</h2>
     <div class="schedule-buttons">
-      <button class="day-btn" data-day="day1">7월 31일 (목)</button>
-      <button class="day-btn" data-day="day2">8월 1일 (금)</button>
-      <button class="day-btn" data-day="day3">8월 2일 (토)</button>
+      <button class="day-btn" data-day="day1"><h2>1일차<br>(목)</h2></button>
+      <button class="day-btn" data-day="day2"><h2>2일차<br>(금)</h2></button>
+      <button class="day-btn" data-day="day3"><h2>3일차<br>(토)</h2></button>
     </div>
 
     <div id="scheduleCardContainer"></div>

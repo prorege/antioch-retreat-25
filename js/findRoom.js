@@ -21,7 +21,7 @@ export async function findRoom() {
   el.style.display = "block";
 
   if (!name) {
-    el.innerHTML = `<p>⚠️ 이름을 입력해주세요.</p>`;
+    el.innerHTML = `<p>⚠️ 이름을 입력해주세요 ⬆</p>`;
     el.scrollIntoView({ behavior: "smooth" });
     return;
   }
@@ -44,8 +44,8 @@ export async function findRoom() {
     if (snap.size > 1) {
       // 동명이인 선택
       el.innerHTML = `
-        <h3>🔎 '${escapeHTML(name)}' 검색 결과 (${snap.size}명)</h3>
-        <p>정확한 이름을 선택하세요:</p>
+        <h3 class = "card-title">🔎 '${escapeHTML(name)}' 검색 결과 (${snap.size}명)</h3>
+        <p>정확한 이름을 선택하세요</p>
         <ul>
           ${snap.docs.map(doc => {
             const p = doc.data();
@@ -98,8 +98,8 @@ async function renderRoomInfo(selectedName, el) {
     .sort((a, b) => a.localeCompare(b, 'ko'));
 
   el.innerHTML = `
-    <h3>🏠 숙소 정보</h3>
-    <p><strong>${escapeHTML(userData.name)}</strong> 님의 숙소는 <strong>${escapeHTML(room)}</strong>입니다.</p>
+    <h2 class="card-title">🏠 숙소 정보</h2>
+    <p><strong>${escapeHTML(userData.name)}</strong> 님의 숙소는 <strong class="emp">${escapeHTML(room)}</strong>입니다.</p>
     <h4>🏘 같은 숙소 참가자 (${roommates.length}명)</h4>
     <ul>
       ${roommates.map(n => `<li>${escapeHTML(n)}</li>`).join("")}

@@ -32,7 +32,7 @@ window.importCSV = async function () {
             church: row["지교회"]?.trim(),
             position: row["직분"]?.trim(),
             room: row["숙소위치"]?.trim(),
-            fasting: row["금식기도"]?.trim() === "O" || row["금식기도"]?.trim().toLowerCase() === "true"
+            fasting: row["금식기도"]?.trim() 
           };
 
           // 유효성 검사 (이름, 조번호는 필수)
